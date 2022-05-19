@@ -34,10 +34,10 @@
 				<img src="/malmex/img/Pasted image 20220519121421.png"></p><br><br>
 				<img src="/malmex/img/Pasted image 20220519121539.png"></p><br><br>
 				<h3 id="pocmdtopdf">PoC md-to-pdf.</h3>
-				<p>We execute the PoC payload by reading the /flag.txt file and redirecting the contents to a file in the current directory.
+				<p style="text-align:center">We execute the PoC payload by reading the /flag.txt file and redirecting the contents to a file in the current directory.
 				<code>---jsn((require("child_process")).execSync("cat /flag.txt &gt; flag.txt"))n--nRCE
 				</code></p>
-				<p>An the same time run the previous vuln so the new invoice looks like this in burpsuite :</p>
+				<p>At the same time run the previous vuln so the new invoice looks like this in burpsuite :</p>
 				<img src="/malmex/img/Pasted image 20220519171954.png"></p><br><br>
 				<p>And export it to show the pdf. And we can read the flag </p>
 				<img src="/malmex/img/Pasted image 20220519172309.png"></p>
