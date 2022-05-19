@@ -6,15 +6,16 @@
 		    <div><h1 id="hackthebox">CyberApocalypse 2022 by HTB</h1>
 			<div id="content"><h1 id="blinkerfluids">Blinker Fluids</h1>
 				<p>This challenge it's about exploiting a vulnerability according to the [CVE-2021-2363] that allows RCE.</p>
-				<p>Checking the app gives a option to create  a new item.<br>
+				<p>Checking the app gives a option to create  a new item.<br><br>
 				<img src="/malmex/img/Pasted image 20220519121017.png" width="800" height="200"></p><br>
-				<p>This function is using markdown to create the invoice.
-				!Pasted image 20220519121124.png</p>
+				<p>This function is using markdown to create the invoice.<br>,br>
+				<img src="/malmex/img/Pasted image 20220519121124.png"width="500" height="350"></p><br>
 				<p>So starts to create a new invoice and then export the invoice to PDF and we can view the text.</p>
-				<p>!Pasted image 20220519121708.png !Pasted image 20220519121724.png</p>
+				<img src="/malmex/img/Pasted image 20220519121708.png"><br>
+				<img src="/malmex/img/Pasted image 20220519121724.png"></p><br>
 				<p>Searching in google markdown pdf vulns we find an article about local file reading so we tried it in the app.</p>
-				<p>https://hackerone.com/reports/360727
-				!Pasted image 20220519133525.png</p>
+				<p>https://hackerone.com/reports/360727<br><br>
+				<img src="/malmex/im/!Pasted image 20220519133525.png"></p><br>
 				<p>The payload doesn't work but we tried another XSS payload and it works, we managed to read files
 				!Pasted image 20220519133746.png</p>
 				<p>!Pasted image 20220519133724.png</p>
