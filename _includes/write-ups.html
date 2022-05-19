@@ -15,11 +15,11 @@
 				<img src="/malmex/img/Pasted image 20220519121724.png"></p><br><br>
 				<p>Searching in google markdown pdf vulns we find an article about local file reading so we tried it in the app.</p>
 				<p>https://hackerone.com/reports/360727<br><br>
-				<img src="/malmex/im/!Pasted image 20220519133525.png"></p><br><br>
+				<img src="/malmex/img/Pasted image 20220519133525.png"></p><br><br>
 				<p>The payload doesn't work but we tried another XSS payload and it works, we managed to read files<br>
 				<img src="/malmex/img/Pasted image 20220519133746.png"><br></p><br>
 				<img src="/malmex/img/Pasted image 20220519133724.png"><br><br>
-				<h4 id="xssok">XSS ok!!!</h4>
+				<h4 id="xssok">XSS ok!!!</h4><br>
 				<p>Create a invoice with this payload:
 				<code>&lt;script&gt;document.write('&lt;iframe src="index.js" width="800" height="900"&gt;&lt;/iframe&gt;')&lt;/script&gt;</code></p><br><br>
 				<img src="/malmex/img/Pasted image 20220519133827.png"><br><br>
