@@ -2,69 +2,43 @@
     <section id="writeups" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                              # Blinker Fluids
-This challenge it's about exploiting a vulnerability according to the [CVE-2021-2363] that allows RCE.
-
-
-Checking the app gives a option to create  a new item.
-![[Pasted image 20220519121017.png]]
-
-This function is using markdown to create the invoice.
-![[Pasted image 20220519121124.png]]
-
-So starts to create a new invoice and then export the invoice to PDF and we can view the text.
-
-![[Pasted image 20220519121708.png]] ![[Pasted image 20220519121724.png]]
-
-Searching in google markdown pdf vulns we find an article about local file reading so we tried it in the app.
-
-https://hackerone.com/reports/360727
-![[Pasted image 20220519133525.png]]
-
-The payload doesn't work but we tried another XSS payload and it works, we managed to read files
-![[Pasted image 20220519133746.png]]
-
-![[Pasted image 20220519133724.png]]
-
-
-#### XSS ok!!!
-Create a invoice with this payload:
-` <script>document.write('<iframe src="index.js" width="800" height="900"></iframe>')</script>`
-
-![[Pasted image 20220519133827.png]]
-
-And got it , read files!!!!!
-
-![[Pasted image 20220519133941.png]]
-
-Try to read the flag.txt but we can read files outside the current directory. We analyze the source code.
-### Source Code
-So at this point, we have a way to read files from the dir, we need to find a way to be able to run commands to read the flag and read it into the pdf. 
-
-Analyzing the source code we realize the use of md-to-pdf.
-![[Pasted image 20220519121230.png]]
-
-We search in google, we find the CVE and a PoC so we see the code to search for the vulnerable function.
-
-![[Pasted image 20220519121421.png]]
-
-![[Pasted image 20220519121539.png]]
-
-
-### PoC md-to-pdf.
-
-We execute the PoC payload by reading the /flag.txt file and redirecting the contents to a file in the current directory.
-`---jsn((require("child_process")).execSync("cat /flag.txt > flag.txt"))n--nRCE
-`
-
-An the same time run the previous vuln so the new invoice looks like this in burpsuite :
-
-![[Pasted image 20220519171954.png]]
-
-
-And export it to show the pdf. And we can read the flag 
-
-![[Pasted image 20220519172309.png]]
+                             <!-- directives:[] -->
+			<div id="content"><h1 id="blinkerfluids">Blinker Fluids</h1>
+<p>This challenge it's about exploiting a vulnerability according to the [CVE-2021-2363] that allows RCE.</p>
+<p>Checking the app gives a option to create  a new item.
+!Pasted image 20220519121017.png</p>
+<p>This function is using markdown to create the invoice.
+!Pasted image 20220519121124.png</p>
+<p>So starts to create a new invoice and then export the invoice to PDF and we can view the text.</p>
+<p>!Pasted image 20220519121708.png !Pasted image 20220519121724.png</p>
+<p>Searching in google markdown pdf vulns we find an article about local file reading so we tried it in the app.</p>
+<p>https://hackerone.com/reports/360727
+!Pasted image 20220519133525.png</p>
+<p>The payload doesn't work but we tried another XSS payload and it works, we managed to read files
+!Pasted image 20220519133746.png</p>
+<p>!Pasted image 20220519133724.png</p>
+<h4 id="xssok">XSS ok!!!</h4>
+<p>Create a invoice with this payload:
+<code>&lt;script&gt;document.write('&lt;iframe src="index.js" width="800" height="900"&gt;&lt;/iframe&gt;')&lt;/script&gt;</code></p>
+<p>!Pasted image 20220519133827.png</p>
+<p>And got it , read files!!!!!</p>
+<p>!Pasted image 20220519133941.png</p>
+<p>Try to read the flag.txt but we can read files outside the current directory. We analyze the source code.</p>
+<h3 id="sourcecode">Source Code</h3>
+<p>So at this point, we have a way to read files from the dir, we need to find a way to be able to run commands to read the flag and read it into the pdf. </p>
+<p>Analyzing the source code we realize the use of md-to-pdf.
+!Pasted image 20220519121230.png</p>
+<p>We search in google, we find the CVE and a PoC so we see the code to search for the vulnerable function.</p>
+<p>!Pasted image 20220519121421.png</p>
+<p>!Pasted image 20220519121539.png</p>
+<h3 id="pocmdtopdf">PoC md-to-pdf.</h3>
+<p>We execute the PoC payload by reading the /flag.txt file and redirecting the contents to a file in the current directory.
+<code>---jsn((require("child_process")).execSync("cat /flag.txt &gt; flag.txt"))n--nRCE
+</code></p>
+<p>An the same time run the previous vuln so the new invoice looks like this in burpsuite :</p>
+<p>!Pasted image 20220519171954.png</p>
+<p>And export it to show the pdf. And we can read the flag </p>
+<p>!Pasted image 20220519172309.png</p></div>
             </div>
         </div>
     </section>
